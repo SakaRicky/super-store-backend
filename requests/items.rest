@@ -1,0 +1,61 @@
+GET http://localhost:5000/items HTTP/1.1
+
+###
+
+POST http://localhost:5000/items HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Item name",
+    "description": "a brief description of the product",
+    "avgRating": 3,
+    "imageUrl": "https://st-super-store.s3-us-west-2.amazonaws.com/images/bag_pipes.jpg",
+    "isOnSale": "yes",
+    "price": 1200,
+    "stockCount": 13
+}
+
+###
+
+POST http://localhost:5000/items HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Item name 2",
+    "description": "a brief description of the 2nd product",
+    "avgRating": 5,
+    "imageUrl": "https://st-super-store.s3-us-west-2.amazonaws.com/images/bag_pipes.jpg",
+    "isOnSale": "no",
+    "price": 700,
+    "stockCount": 39
+}
+
+###
+
+POST http://localhost:5000/items HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Item name 3",
+    "description": "a brief description of the 3rd product",
+    "avgRating": 5,
+    "imageUrl": "https://st-super-store.s3-us-west-2.amazonaws.com/images/bag_pipes.jpg",
+    "isOnSale": "no",
+    "price": 700,
+    "stockCount": 39
+}
+
+###
+
+POST http://localhost:5000/items HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Item name 4",
+    "description": "a brief description of the 4th product",
+    "avgRating": 5,
+    "imageUrl": "www.imageitemurl2.com",
+    "isOnSale": "no",
+    "price": 700,
+    "stockCount": 39
+}
