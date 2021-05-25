@@ -1,8 +1,8 @@
-GET http://localhost:5000/items HTTP/1.1
+GET http://localhost:5000/item/list HTTP/1.1
 
 ###
 
-POST http://localhost:5000/items HTTP/1.1
+POST http://localhost:5000/item HTTP/1.1
 content-type: application/json
 
 {

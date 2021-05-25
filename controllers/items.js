@@ -7,9 +7,8 @@ const logger = require('../utils/logger')
 
 itemsRouter.get('/list', async (req, res, error) => {
 
-    const params = req.query
-
-    console.log('params', params);
+    // Get the params fron the query in the request object
+    const params = req.query.params
 
     if (params.q) {
         const queriedItems = await itemModel.find({name: params.q})
@@ -21,7 +20,7 @@ itemsRouter.get('/list', async (req, res, error) => {
     if (params.isOnSale) {
         items = await itemModel.find({isOnSale: params.isOnSale}).skip(parseInt(params.from)).limit(parseInt(params.size))
     } else {
-        items = await itemModel.find({}).skip(parseInt(params.from)).limit(parseInt(params.size))
+        items = await itemModel.find({}).skip(parseInt(params.from-1)).limit(parseInt(params.size))
     }
 
     res.send({items : items})
@@ -30,7 +29,12 @@ itemsRouter.get('/list', async (req, res, error) => {
 itemsRouter.get('/:id', async (req, res, error) => {
     const id = req.params.id
     const item = await itemModel.findById(id)
-    res.send(item)
+    console.log('item:', item);
+    if (item) {
+        res.send(item)
+    } else {
+        res.send(400)
+    }
 })
 
 itemsRouter.post('/', async (req, res, error) => {
@@ -75,6 +79,17 @@ itemsRouter.post('/upload', async (req, res) => {
         res.send(saved_item)
     })
     // res.send()
+})
+
+itemsRouter.delete('/:id', async (req, res) => {
+    
+    const idOfItemToDelete = req.params.id
+    // find the item with that id and delete
+    await itemModel.findByIdAndDelete(idOfItemToDelete)
+    
+    // Response with status 204, meaning the user after making this request can continue
+    // in the current page, editing what ever he/she was doing
+    res.sendStatus(204);
 })
 
 module.exports = itemsRouter
