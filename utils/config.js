@@ -8,7 +8,7 @@ const MONGODB_URI = process.env.NODE_ENV === 'test'
     ? process.env.MONGOURL_TEST
     : process.env.MONGODB_URI
 
-// console.log('MONGOURL', MONGOURL);
+console.log('MONGOURL', MONGOURL);
 
 module.exports = {
     MONGODB_URI,
