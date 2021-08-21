@@ -7,7 +7,6 @@ const test_helper = require('./test_helper')
 const api = supertest(app)
 
 const Item = require('../models/item');
-const { notify } = require('../app');
 
 // This block is executed before running each test so that the database should 
 // the exact same number of elements and should be in the same state before each test
@@ -44,7 +43,6 @@ describe('When there is initially some', () => {
         // Number of items asked from the backend
         const size = 6
         const response = await api.get('/item/list').query({params: {from: 1, size: 6}})
-        console.log('response.body.items', response.body.items);
         expect(response.body.items).toHaveLength(size)
             
     })    
@@ -126,8 +124,6 @@ describe('Deletion of an item', () => {
 
     
 })
-
-
 
 afterAll(() => {
     mongoose.connection.close()

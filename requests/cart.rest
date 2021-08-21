@@ -1,0 +1,28 @@
+
+POST http://localhost:5000/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "sakaricky91@gmail.com",
+    "password": "jw76102907"
+}
+
+###
+
+POST http://localhost:5000/cart HTTP/1.1
+content-type: application/json
+authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpY2t5c2FrYTkxIiwiaWQiOiI2MGIwZWVlODI0N2M0M2EwZTMzYTRlM2IiLCJpYXQiOjE2MjIyOTE0MDl9.KuYiO2fo8_-xrrXdHQvobqEGKv5JjH_hdbKWtjlYfac
+
+{
+    "cart": [
+        {
+            "name": "Item name",
+            "description": "a brief description of the product",
+            "avgRating": 3,
+            "imageUrl": "https://st-super-store.s3-us-west-2.amazonaws.com/images/bag_pipes.jpg",
+            "isOnSale": "yes",
+            "price": 1200,
+            "stockCount": 13
+        }
+    ]
+}

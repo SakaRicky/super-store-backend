@@ -1,0 +1,17 @@
+POST http://localhost:5000/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "sakaricky91@gmail.com",
+    "password": "jw76102907"
+}
+
+###
+
+POST http://localhost:5000/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "kwatorheine8@gmail.com",
+    "password": "melodie8"
+}

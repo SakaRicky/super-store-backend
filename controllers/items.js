@@ -6,24 +6,25 @@ const path = require('path')
 const logger = require('../utils/logger')
 
 itemsRouter.get('/list', async (req, res, error) => {
-
     // Get the params fron the query in the request object
-    const params = req.query.params
-
-    if (params.q) {
-        const queriedItems = await itemModel.find({name: params.q})
+    const params = req.query
+    if (params.q) { // If there is a query parameter, gather all data in the database and search
+        const allItems = await itemModel.find({})
+        const queriedItems = allItems.filter(item => item.name.includes(params.q))
         res.send({items : queriedItems})
     }
 
     let items = null
-
-    if (params.isOnSale) {
+    let totalItems = null
+    if (params.isOnSale === 'true' ) {
         items = await itemModel.find({isOnSale: params.isOnSale}).skip(parseInt(params.from)).limit(parseInt(params.size))
+        totalItems = await itemModel.countDocuments({isOnSale: params.isOnSale})
     } else {
-        items = await itemModel.find({}).skip(parseInt(params.from-1)).limit(parseInt(params.size))
+        items = await itemModel.find({}).skip(parseInt(params.from)).limit(parseInt(params.size))
+        totalItems = await itemModel.countDocuments({})
     }
 
-    res.send({items : items})
+    res.send({items : items, total: totalItems})
 })
 
 itemsRouter.get('/:id', async (req, res, error) => {
@@ -37,16 +38,13 @@ itemsRouter.get('/:id', async (req, res, error) => {
     }
 })
 
+// Still trying to figure out why I created this route
 itemsRouter.post('/', async (req, res, error) => {
     const item_received = req.body
     logger.info(item_received);
-
     const item = new itemModel(item_received)
-
     const saved_item = await item.save()
-
     res.send(saved_item)
-
 })
 
 const storage = multer.diskStorage({
@@ -61,6 +59,7 @@ const upload = multer({
     storage: storage
 }).single('image')
 
+// This route is used to upload or save new item to the backend server
 itemsRouter.post('/upload', async (req, res) => {
     upload(req, res, async (err) => {
 
@@ -68,7 +67,6 @@ itemsRouter.post('/upload', async (req, res) => {
         logger.info(item_received);
 
         const image_path = req.file.path
-        logger.info('req.file', req.file)
         item_received.imageUrl = `http://localhost:5000/${image_path.slice(7)}`
         logger.info(item_received)
 

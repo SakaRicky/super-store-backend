@@ -1,0 +1,25 @@
+GET http://localhost:5000/users HTTP/1.1
+
+###
+
+POST http://localhost:5000/users HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Ricky",
+    "username": "rickysaka91",
+    "email": "sakaricky91@gmail.com",
+    "password": "jw76102907"
+}
+
+###
+
+POST http://localhost:5000/users HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Rheine",
+    "username": "kwatoRheine",
+    "email": "kwatorheine8@gmail.com",
+    "password": "melodie8"
+}
