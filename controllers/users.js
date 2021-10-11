@@ -9,6 +9,7 @@ userRouter.get('/', async (req, res) => {
 })
 
 // Save new user to backend
+// another comment
 userRouter.post('/', async (req, res) => {
     const body = req.body
     const saltRounds = 10
