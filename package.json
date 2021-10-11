@@ -8,7 +8,7 @@
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "start:test": "cross-env NODE_ENV=test node index.js",
-    "build:ui": "rm -rf build && cd ../my-superstore-typescript/ && npm run build --prod && cp -r build ../super-store-backend",
+    "build:ui": "rm -rf build && cd ../my-super-store/ && npm run build --prod && cp -r build ../super-store-backend",
     "deploy": "git push heroku main",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
     "logs:prod": "heroku logs --tail"
