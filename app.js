@@ -14,14 +14,14 @@ const logger = require('./utils/logger')
 
 const app = express()
 
-// use this here for now for connecting to the database during testing
-mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
-  .then(() => {
-    logger.info('connected to MongoDB')
-  })
-  .catch((error) => {
-    logger.error('error connection to MongoDB:', error.message)
-  })
+// // use this here for now for connecting to the database during testing
+// mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
+//   .then(() => {
+//     logger.info('connected to MongoDB')
+//   })
+//   .catch((error) => {
+//     logger.error('error connection to MongoDB:', error.message)
+//   })
 
   // used for cross origin, i.e. so that request from other sources can be accepted
 app.use(cors())

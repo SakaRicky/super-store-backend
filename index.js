@@ -6,22 +6,22 @@ const config = require('./utils/config')
 const logger = require('./utils/logger')
 
 const server = http.createServer(app)
-const PORT = config.PORT
+const PORT = config.PORT || 
 
-// logger.info('connecting to', config.MONGOURL)
+logger.info('connecting to', config.MONGOURL)
 
-// mongoose
-//   .connect(config.MONGOURL, { 
-//         useNewUrlParser: true, 
-//         useUnifiedTopology: true, 
-//         useFindAndModify: false, 
-//         useCreateIndex: true })
-//   .then(() => {
-//     logger.info('connected to MongoDB')
-//   })
-//   .catch((error) => {
-//     logger.error('error connecting to MongoDB:', error.message)
-//   })
+mongoose
+  .connect(config.MONGODB_URI, { 
+        useNewUrlParser: true, 
+        useUnifiedTopology: true, 
+        useFindAndModify: false, 
+        useCreateIndex: true })
+  .then(() => {
+    logger.info('connected to MongoDB')
+  })
+  .catch((error) => {
+    logger.error('error connecting to MongoDB:', error.message)
+  })
 
 server.listen(PORT, () => {
     console.log(`Server running on ${PORT}`);
