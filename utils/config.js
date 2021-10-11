@@ -1,6 +1,6 @@
 // const { config } = require('dotenv')
 
-require('dotenv').config()
+require('dotenv').config({ path: '.env' })
 
 const PORT = process.env.PORT
 
@@ -8,7 +8,7 @@ const MONGODB_URI = process.env.NODE_ENV === 'test'
     ? process.env.MONGOURL_TEST
     : process.env.MONGODB_URI
 
-// const MONGODB_URI = `mongodb+srv://rickysaka:jw76102907@cluster0.u3l97.mongodb.net/super-store?retryWrites=true&w=majority`
+console.log('MONGODB_URI', MONGODB_URI);
 
 module.exports = {
     MONGODB_URI,
