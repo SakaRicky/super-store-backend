@@ -15,13 +15,15 @@ loginRouter.post('/', async (req, res) => {
         ? false
         : await bcrypt.compare(body.password, user.passwordHash)
     
+    console.log('user? ', user);
+    console.log('passwordCorrect? ', passwordCorrect);
     // If there is no user and no password, auth fail and return message to indicate that
     if (!(user && passwordCorrect)) {
         return res.status(401).json({
             error: "invalid username or password"
         })
     }
-    console.log('admin user? ', user);
+    
 
     // The token will be created using the id and username
     // They will be useful later when a request comes with a token and the server needs confirm the person
