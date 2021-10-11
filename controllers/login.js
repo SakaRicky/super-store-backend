@@ -31,8 +31,10 @@ loginRouter.post('/', async (req, res) => {
         role: user.role
     }
 
+    SECRET = "superstore;"
+
     // Generate the token using the id and username
-    const token = jwt.sign(tokenForUser, process.env.SECRET)
+    const token = jwt.sign(tokenForUser, SECRET)
 
     return res
         .status(200)
